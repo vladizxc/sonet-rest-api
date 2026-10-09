@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.sonet.entity.dto.postDto.PostContainerDto;
 import org.sonet.entity.dto.postDto.PostDto;
 import org.sonet.entity.dto.userDto.UserDto;
+import org.sonet.entity.dto.userDto.UserSummaryDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +106,14 @@ public class User {
                 username,
                 email,
                 postContainerDto
+        );
+    }
+
+    public UserSummaryDto summaryDto(){
+        return new UserSummaryDto(
+                id,
+                name,
+                username
         );
     }
 }

@@ -91,9 +91,9 @@ public class Post {
         return new PostDto(
                 id,
                 content,
-                createdAt,
+                createdAt.toLocalDate(),
                 numberOfLikes,
                 numberOFSaves,
-                user);
+                user.summaryDto());
     }
 }

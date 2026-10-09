@@ -1,11 +1,11 @@
 package org.sonet.controller;
 
 import org.sonet.entity.dto.postDto.PostContainerDto;
+import org.sonet.entity.dto.postDto.PostDto;
+import org.sonet.entity.request.CreatePostRequest;
 import org.sonet.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -21,5 +21,10 @@ public class PostController {
     @GetMapping("/posts")
     public PostContainerDto findAll(){
         return postService.findAll();
+    }
+
+    @PostMapping("/posts")
+    public PostDto createPost(@RequestBody CreatePostRequest request){
+        return postService.createPost(request);
     }
 }
