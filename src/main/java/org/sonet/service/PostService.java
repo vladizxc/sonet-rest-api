@@ -2,8 +2,8 @@ package org.sonet.service;
 
 import jakarta.transaction.Transactional;
 import org.sonet.entity.Post;
-import org.sonet.entity.dto.PostContainerDto;
-import org.sonet.entity.dto.PostDto;
+import org.sonet.entity.dto.postDto.PostContainerDto;
+import org.sonet.entity.dto.postDto.PostDto;
 import org.sonet.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

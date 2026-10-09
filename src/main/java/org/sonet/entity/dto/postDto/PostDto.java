@@ -1,4 +1,4 @@
-package org.sonet.entity.dto;
+package org.sonet.entity.dto.postDto;
 
 import org.sonet.entity.User;
 

@@ -1,6 +1,9 @@
 package org.sonet.entity;
 
 import jakarta.persistence.*;
+import org.sonet.entity.dto.postDto.PostContainerDto;
+import org.sonet.entity.dto.postDto.PostDto;
+import org.sonet.entity.dto.userDto.UserDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +32,12 @@ public class User {
 
     public User(){}
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String username, String email, String password, List<Post> posts) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.posts = posts;
     }
 
     public long getId() {
@@ -88,5 +92,19 @@ public class User {
         if (post == null) posts = new ArrayList<>();
         posts.add(post);
         post.setUser(this);
+    }
+
+    public UserDto toDto(){
+        List<PostDto> postDtos = posts.stream().
+                map(Post::toDto).
+                toList();
+        PostContainerDto postContainerDto = new PostContainerDto(postDtos);
+        return new UserDto(
+                id,
+                name,
+                username,
+                email,
+                postContainerDto
+        );
     }
 }

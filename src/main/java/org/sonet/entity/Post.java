@@ -1,7 +1,7 @@
 package org.sonet.entity;
 
 import jakarta.persistence.*;
-import org.sonet.entity.dto.PostDto;
+import org.sonet.entity.dto.postDto.PostDto;
 
 import java.time.LocalDateTime;
 
