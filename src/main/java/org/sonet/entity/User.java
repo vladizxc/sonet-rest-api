@@ -2,6 +2,7 @@ package org.sonet.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class User {
     @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;
 
     public User(){}
@@ -81,5 +82,11 @@ public class User {
 
     public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public void addUserToPost(Post post){
+        if (post == null) posts = new ArrayList<>();
+        posts.add(post);
+        post.setUser(this);
     }
 }

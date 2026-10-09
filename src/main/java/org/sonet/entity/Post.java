@@ -1,6 +1,7 @@
 package org.sonet.entity;
 
 import jakarta.persistence.*;
+import org.sonet.entity.dto.PostDto;
 
 import java.time.LocalDateTime;
 
@@ -84,5 +85,15 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public PostDto toDto(){
+        return new PostDto(
+                id,
+                content,
+                createdAt,
+                numberOfLikes,
+                numberOFSaves,
+                user);
     }
 }
