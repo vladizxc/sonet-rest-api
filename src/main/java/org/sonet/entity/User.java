@@ -89,7 +89,7 @@ public class User {
     }
 
     public void addUserToPost(Post post){
-        if (post == null) posts = new ArrayList<>();
+        if (posts == null) posts = new ArrayList<>();
         posts.add(post);
         post.setUser(this);
     }

@@ -6,6 +6,7 @@ import org.sonet.entity.dto.userDto.UserDto;
 import org.sonet.entity.request.CreateUserRequest;
 import org.sonet.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,13 @@ public class UserService {
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    public User getCurrentUser(){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository
+                .findByUsernameIgnoreCase(username)
+                .orElseThrow(()->new IllegalArgumentException("User with username = " + username + " not found."));
     }
 
     public UserDto createUser(CreateUserRequest request){
