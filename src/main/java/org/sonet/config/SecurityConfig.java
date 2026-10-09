@@ -37,7 +37,12 @@ public class SecurityConfig {
                         .requestMatchers("/", "/api/v1/registration").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/posts").permitAll()
                         .anyRequest().authenticated()
-                ).build();
+                ).formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
+                        .loginPage("/login").permitAll()
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/api/v1/posts"))
+                .build();
     }
 
     @Bean
